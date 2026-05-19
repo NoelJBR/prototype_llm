@@ -3,7 +3,7 @@ const axios = require('axios');
 
 const router = express.Router();
 
-// No API key needed for local Ollama
+// Ollama server URL
 const OLLAMA_URL = 'http://localhost:11434/api/chat';
 
 router.post('/', async (req, res) => {
@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
     try {
         // Send to local Ollama
         const response = await axios.post(OLLAMA_URL, {
-            model: 'mistral',  // or whatever model
+            model: 'gpt-oss:20b',
             messages: [{ role: 'user', content: userMessage }],
             stream: false
         });

@@ -11,7 +11,7 @@ async function sendMessage() {
     const message = input.value.trim();
     if (!message) return;
 
-    addMessage('You: ' + message);
+    addMessage(message, 'user');
     input.value = '';
 
     try {
@@ -21,16 +21,17 @@ async function sendMessage() {
             body: JSON.stringify({ message })
         });
         const data = await response.json();
-        addMessage('AI: ' + data.message);
+        addMessage(data.message, 'ai');
     } catch (error) {
-        addMessage('Error: Could not connect to AI');
+        addMessage('Error: Could not connect to AI', 'ai');
     }
 }
 
-function addMessage(text) {
+function addMessage(text, type) {
     const output = document.getElementById('chat-output');
     const div = document.createElement('div');
     div.textContent = text;
+    div.className = 'message ' + (type === 'user' ? 'user-message' : 'ai-message');
     output.appendChild(div);
     output.scrollTop = output.scrollHeight;
 }

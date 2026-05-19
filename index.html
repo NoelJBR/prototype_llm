@@ -7,28 +7,86 @@
     <title>Nmap Agent</title>
 </head>
 <body>
-    <header>
-        <h1>Nmap Network Scanner</h1>
-    </header>
-    <main>
-        <section class="scan">
-            <h2>Perform Scan</h2>
-            <form id="scan-form">
-                <input type="text" id="target" placeholder="Target IP or hostname" required>
-                <input type="text" id="options" placeholder="Nmap options (e.g., -sV -p 80)">
-                <button type="submit">Scan</button>
-            </form>
-            <div id="scan-result"></div>
-        </section>
-        <section class="chat">
-            <h2>AI Assistant</h2>
-            <div id="chat-window">
-                <div id="chat-output"></div>
-                <input type="text" id="chat-input" placeholder="Ask about nmap or scan results...">
-                <button id="send-btn">Send</button>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo-dot logo-dot-1"></div>
+                <div class="logo-dot logo-dot-2"></div>
+                <div class="logo-dot logo-dot-3"></div>
+                <span>Nmap Agent</span>
             </div>
-        </section>
-    </main>
+            <nav class="nav-list">
+                <a href="#" class="nav-item active">Dashboard</a>
+                <a href="#" class="nav-item">Scan History</a>
+                <a href="#" class="nav-item">Prompts</a>
+                <a href="#" class="nav-item">Settings</a>
+            </nav>
+            <div class="status-card">
+                <p>Local LLM</p>
+                <strong>gpt-oss:20b</strong>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section class="panel grid-panel">
+                <div class="card card-scan">
+                    <div class="card-header">
+                        <h2>Network Scan</h2>
+                        <span class="badge">Live</span>
+                    </div>
+                    <form id="scan-form" class="scan-form">
+                        <label>
+                            Target
+                            <input type="text" id="target" placeholder="http://scanme.nmap.org" required>
+                        </label>
+                        <label>
+                            Options
+                            <input type="text" id="options" placeholder="-sV -p 80">
+                        </label>
+                        <button type="submit">Start Scan</button>
+                    </form>
+                    <div id="scan-result" class="scan-result">Enter a target and click Start Scan.</div>
+                </div>
+
+                <div class="card card-history">
+                    <div class="card-header">
+                        <h2>Recent Activity</h2>
+                        <span>3 items</span>
+                    </div>
+                    <div class="history-list">
+                        <div class="history-item">
+                            <strong>scanme.nmap.org</strong>
+                            <p>-sV</p>
+                        </div>
+                        <div class="history-item">
+                            <strong>192.168.1.1</strong>
+                            <p>-T4 -p 22,80</p>
+                        </div>
+                        <div class="history-item">
+                            <strong>example.com</strong>
+                            <p>-A</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel chat-panel">
+                <div class="card card-chat">
+                    <div class="card-header">
+                        <h2>AI Assistant</h2>
+                        <span>Ask anything</span>
+                    </div>
+                    <div id="chat-window" class="chat-window">
+                        <div id="chat-output" class="chat-output"></div>
+                        <div class="chat-actions">
+                            <input type="text" id="chat-input" placeholder="Ask about nmap or scan results...">
+                            <button id="send-btn">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
